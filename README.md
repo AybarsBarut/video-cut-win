@@ -15,7 +15,7 @@ Videonun bulunduğu klasörde PowerShell açın ve çalıştırın:
 
 ```powershell
 irm -useb "https://raw.githubusercontent.com/AybarsBarut/video-cut-win/main/win-video-cut.ps1" | iex
-win iex x.mp4 1.00 3.33
+win cut x.mp4 1.00 3.33
 ```
 
 Bu komut `x.mp4` dosyasının `1.00` ile `3.33` saniyeleri arasını kırpar ve
@@ -44,20 +44,20 @@ x_cut_1_00-3_33.mp4
 Varsayılan mod videoyu H.264, sesi AAC olarak yeniden kodlar:
 
 ```powershell
-win iex video.mp4 10.5 25.75
+win cut video.mp4 10.5 25.75
 ```
 
-`iex`, `cut` ve `trim` alt komutları aynı kırpma işlemini yapar:
+Ana alt komut `cut` şeklindedir. Geriye dönük uyumluluk için `iex` ve `trim`
+alias'ları da aynı kırpma işlemini yapar:
 
 ```powershell
-win cut video.mp4 10.5 25.75
 win trim video.mp4 10.5 25.75
 ```
 
 ### Hızlı kırpma
 
 ```powershell
-win iex video.mp4 10.5 25.75 -Fast
+win cut video.mp4 10.5 25.75 -Fast
 ```
 
 `-Fast` modu stream copy kullanır. Yeniden kodlama yapmadığı için çok hızlıdır
@@ -69,13 +69,13 @@ bağlı olduğundan başlangıç veya bitiş zamanı hassas mod kadar kesin olma
 Süreleri yazmazsanız araç başlangıç ve bitiş değerlerini sorar:
 
 ```powershell
-win iex video.mp4
+win cut video.mp4
 ```
 
 Dosya adını da interaktif olarak girebilirsiniz:
 
 ```powershell
-win iex
+win cut
 ```
 
 ### Virgüllü ondalık süre
@@ -83,24 +83,24 @@ win iex
 Türkçe bölgesel ayarlarla virgüllü süreler doğrudan kullanılabilir:
 
 ```powershell
-win iex video.mp4 1,00 3,33
+win cut video.mp4 1,00 3,33
 ```
 
 Dosya yolunda boşluk varsa yolu tırnak içine alın:
 
 ```powershell
-win iex "tatil videosu.mp4" 5.25 18.50
+win cut "tatil videosu.mp4" 5.25 18.50
 ```
 
 ## Komut Yapısı
 
 ```text
-win <iex|cut|trim> <video-dosyası> <başlangıç-saniyesi> <bitiş-saniyesi> [-Fast]
+win cut <video-dosyası> <başlangıç-saniyesi> <bitiş-saniyesi> [-Fast]
 ```
 
 | Argüman | Açıklama |
 | --- | --- |
-| `iex`, `cut`, `trim` | Desteklenen alt komutlar |
+| `cut` | Video kırpma alt komutu (`iex` ve `trim` alias olarak desteklenir) |
 | `video-dosyası` | Kırpılacak videonun yolu |
 | `başlangıç-saniyesi` | Kesimin başlayacağı saniye |
 | `bitiş-saniyesi` | Kesimin sona ereceği saniye |
@@ -138,16 +138,16 @@ video_cut_1_00-3_33_2.mp4
 
 ```powershell
 # 1 ile 3 saniye arasını hassas kırp
-win iex x.mp4 1 3
+win cut x.mp4 1 3
 
 # Ondalıklı sürelerle kırp
-win iex x.mp4 1.00 3.33
+win cut x.mp4 1.00 3.33
 
 # Türkçe ondalık ayracı kullan
-win iex x.mp4 1,00 3,33
+win cut x.mp4 1,00 3,33
 
 # Yeniden kodlama olmadan hızlı kırp
-win iex x.mp4 1.00 3.33 -Fast
+win cut x.mp4 1.00 3.33 -Fast
 ```
 
 ## Sorun Giderme

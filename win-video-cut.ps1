@@ -21,14 +21,13 @@ function global:win {
     function Show-Usage {
         Write-Host ""
         Write-Host "Kullanım:"
-        Write-Host "  win iex <video> <başlangıç> <bitiş> [-Fast]"
         Write-Host "  win cut <video> <başlangıç> <bitiş> [-Fast]"
-        Write-Host "  win trim <video> <başlangıç> <bitiş> [-Fast]"
+        Write-Host "  Alias'lar: iex, trim"
         Write-Host ""
         Write-Host "Örnekler:"
-        Write-Host "  win iex x.mp4 1.00 3.33"
-        Write-Host "  win iex x.mp4 1,00 3,33 -Fast"
-        Write-Host "  win iex x.mp4"
+        Write-Host "  win cut x.mp4 1.00 3.33"
+        Write-Host "  win cut x.mp4 1,00 3,33 -Fast"
+        Write-Host "  win cut x.mp4"
     }
 
     function ConvertTo-TimeValue {
@@ -181,9 +180,9 @@ function global:win {
         return
     }
 
-    $supportedCommands = @("iex", "cut", "trim")
+    $supportedCommands = @("cut", "iex", "trim")
     if ($supportedCommands -notcontains $Command.ToLowerInvariant()) {
-        Write-Error "Geçersiz alt komut: '$Command'. Desteklenen komutlar: iex, cut, trim." `
+        Write-Error "Geçersiz alt komut: '$Command'. Desteklenen komutlar: cut, iex, trim." `
             -ErrorAction Continue
         Show-Usage
         return
@@ -300,4 +299,4 @@ function global:win {
 }
 
 Write-Host "Video cutter yüklendi."
-Write-Host "Kullanım: win iex video.mp4 1.00 3.33"
+Write-Host "Kullanım: win cut video.mp4 1.00 3.33"
